@@ -118,6 +118,8 @@ true_download_method <- function(x) {
 auto_download_method <- function() {
   if (isTRUE(capabilities("libcurl"))) {
     "libcurl"
+  } (identical(Sys.info()[["sysname"]], "Windows")) {
+    "wininet"
   } else if (isTRUE(capabilities("http/ftp"))) {
     "internal"
   } else if (nzchar(Sys.which("wget"))) {
